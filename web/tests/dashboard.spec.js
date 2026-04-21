@@ -16,20 +16,20 @@ test.describe('dashboard', () => {
   })
 
   test('renders scan snapshot details', async ({ page }) => {
-    await expect(page.getByText('Gateway')).toBeVisible()
+    await expect(page.getByText('Gateway', { exact: true })).toBeVisible()
     await expect(page.getByText('192.168.1.1')).toBeVisible()
     await expect(page.getByText('Available Sources')).toBeVisible()
     await expect(page.getByText('arp, icmp, tcp, mdns')).toBeVisible()
   })
 
   test('renders discovery diagnostics', async ({ page }) => {
-    await expect(page.getByText('Discovery Diagnostics')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Discovery Diagnostics' })).toBeVisible()
     await expect(page.getByText('Devices found: 5')).toBeVisible()
     await expect(page.getByText('Duration: 12.5 s')).toBeVisible()
   })
 
   test('renders devices table with correct rows', async ({ page }) => {
-    await expect(page.getByText('Devices')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Devices' })).toBeVisible()
     await expect(page.getByText('5 records')).toBeVisible()
 
     for (const device of devicesFixture) {
